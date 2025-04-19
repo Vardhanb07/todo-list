@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>todo-list</title>
+    <link rel="shortcut icon" href="./images/check-all.svg" type="image/x-icon">
 </head>
 <body>
     <nav class="navigation">
@@ -14,22 +15,30 @@
         <div class="sub-header">
             <div class="projects">
                 <img src="./images/checkbox-multiple-marked-outline.svg" alt="checkbox-multiple-marked-outline-svg" height="30" width="30">
-                <p>Projects</p>
-            </div>
-            <div class="today">
-                <img src="./images/calendar-multiple-check.svg" alt="calendar-multiple-check-svg" width="30" height="30">
-                <p>Today</p>
-            </div>
-            <div class="this-week">
-                <img src="./images/calendar-multiple-check.svg" alt="calendar-multiple-check-svg" width="30" height="30">
-                <p>This week</p>
+                <p class="sub-header-text projects-text">Projects</p>
             </div>
             <div class="new-project">
                 <img src="./images/calendar-import-outline.svg" alt="calendar-import-outline-svg" width="30" height="30">
-                <p>New project</p>
+                <p class="sub-header-text">New project</p>
             </div>
         </div>
     </nav>
-    <div class="project-section"></div>
+    <div class="project-section">
+        <form action="#">
+            <p>
+                <label for="title">TITLE</label>
+                <input type="text" id="title" name="title">
+            </p>
+            <div class="button">
+                <button type="submit">CREATE</button>
+            </div>
+        </form>
+        <div class="project">
+            <div class="p-1">
+                <p class="project-title">test</p>
+                <button class="view">VIEW</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
