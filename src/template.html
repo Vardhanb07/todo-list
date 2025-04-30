@@ -24,20 +24,65 @@
         </div>
     </nav>
     <div class="project-section">
-        <form action="#">
-            <p>
+        <form action="#" class="new-project-add">
+            <p class="project-details">
                 <label for="title">TITLE</label>
                 <input type="text" id="title" name="title">
             </p>
             <div class="button">
-                <button type="submit">CREATE</button>
+                <button type="submit" class="create">CREATE</button>
             </div>
         </form>
         <div class="project">
             <div class="p-1">
                 <p class="project-title">test</p>
-                <button class="view">VIEW</button>
+                <div>
+                    <button class="view">VIEW</button>
+                    <button class="remove">REMOVE</button>
+                </div>
             </div>
+        </div>
+        <div class="todos">
+            <div class="todo-header">
+                <p class="todos-project-name">TEST</p>
+                <button class="todo-add" title="Add todo">Add</button>
+            </div>
+            <div class="todo">
+                <div class="todo-status" title="check if completed">
+                    <div data-color="red"></div>
+                </div>
+                <div class="todo-about">
+                    <p class="todo-name">TEST</p>
+                    <img src="./images/stat-minus-1.svg" alt="stat-minus-1.svg" title="view" width="34" height="34">
+                </div>
+                <div>
+                    <img src="./images/delete.svg" alt="delete.svg" title="remove todo" width="34" height="34">
+                </div>
+            </div>
+        </div>
+        <div class="todo-add-form">
+            <form action="#" class="todo-form">
+                <p>
+                    <label for="title">TITLE</label>
+                    <input name="title" type="text" id="todo-title">
+                </p>
+                <p>
+                    <label for="description">DESCRIPTION</label>
+                    <textarea name="description"  id="todo-description" rows="15" cols="50"> </textarea>
+                </p>
+                <p>
+                    <label for="duedate">DUE-DATE</label>
+                    <input name="duedate" type="text" id="todo-duedate">
+                </p>
+                <p>
+                    <label for="priority">PRIORITY</label>
+                    <input name="priority" type="text" id="todo-priority">
+                </p>
+                <p id="button">
+                    <button>ADD</button>
+                    <button>GO BACK</button>
+                </p>
+            </form>
         </div>
     </div>
 </body>
