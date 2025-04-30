@@ -58,26 +58,26 @@ body {
     align-items: center;
     padding: 10px;
 }
-form{
+.new-project-add{
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
-form > p{
+.new-project-add > p{
     display: flex;
     flex-direction: column;
     letter-spacing: 1.3px;
     gap: 3px;
     font-family: 'Roboto';
 }
-label{
+.new-project-add label{
     font-size: 20px;
     text-decoration: underline;
     text-decoration-color: grey;
 }
-input{
+.new-project-add input{
     outline: none;
     width: 250px;
     height: 25px;
@@ -113,6 +113,7 @@ input{
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: start;
+    gap: 10px;
 }
 .p-1{
     display: flex;
@@ -132,12 +133,134 @@ input{
     text-decoration-style: wavy;
     text-decoration-color: rgba(0, 0, 0, 0.418);
 }
-.view{
+.project-title + div{
     flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.project-title + div > button{
     border-width: 0;
     background-color: rgba(0, 0, 0, 0.377);
     border-radius: 5px;
     font-family: 'Roboto';
     font-size: 20px;
+    cursor: pointer;
+    height: 32px;
+}
+.project-todos{
+    display: none;
+}
+.todos {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    gap: 10px;
+}
+.todo-header{
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+}
+.todo-header > p {
+    flex: 2.5 0 0;
+    font-family: 'Roboto';
+    font-size: 40px;
+    background-color: rgba(0, 0, 0, 0.377);
+    padding-left: 10px;
+}
+.todo-header > button {
+    flex: 1 0 0;
+    font-family: 'Roboto';
+    font-size: 30px;
+    border-width: 0;
+    background-color: rgba(0, 0, 0, 0.377);
+    cursor: pointer;
+}
+.todo {
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(0, 0, 0, 0.377);
+    padding: 10px;
+}
+.todo-about { 
+    flex: 6 0 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.todo-about > p {
+    flex: 3 0 0;
+    font-size: 26px;
+    font-family: "Roboto";
+}
+.todo-about > img {
+    flex: 2 0 0;
+    cursor: pointer;
+}
+.todo-status {
+    flex: 1 0 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.todo-status > div {
+    width: 24px;
+    height: 24px;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: red;
+    cursor: pointer;
+}
+.todo-add-form{
+    display: none;
+    position: absolute;
+    background-color: rgba(128, 128, 128, 0.616);
+}
+.todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px;
+}
+.todo-form > p {
+    display: flex;
+    flex-direction: column;
+}
+.todo-form label{
+    font-family: "Roboto";
+}
+.todo-form input {
+    outline: none;
+    height: 1.6em;
+    padding: 5px;
+    font-family: "Roboto";
+    font-size: 18px;
+}
+img[alt="delete.svg"]{
+    cursor: pointer;
+}
+textarea{
+    outline: none;
+    resize: none;
+    padding: 5px;
+    font-size: 18px;
+    font-family: "Roboto";
+}
+#button {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 34px;
+    gap: 7px;
+}
+#button > button {
+    flex: 1 0 0;
+    border-width: 0;
+    background-color: rgba(0, 0, 0, 0.288);
+    font-size: 24px;
+    border-radius: 3px;
+    font-family: "Roboto";
     cursor: pointer;
 }
