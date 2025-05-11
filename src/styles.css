@@ -178,89 +178,162 @@ body {
     background-color: rgba(0, 0, 0, 0.377);
     cursor: pointer;
 }
-.todo {
+.todo{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.377);
+}
+.todo-start-show {
     display: flex;
     flex-direction: row;
-    background-color: rgba(0, 0, 0, 0.377);
     padding: 10px;
 }
-.todo-about { 
-    flex: 6 0 0;
+.todo-status{
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
-}
-.todo-about > p {
-    flex: 3 0 0;
-    font-size: 26px;
-    font-family: "Roboto";
-}
-.todo-about > img {
-    flex: 2 0 0;
-    cursor: pointer;
-}
-.todo-status {
-    flex: 1 0 0;
-    height: 100%;
-    display: flex;
-    align-items: center;
+    flex: 0.4 0 0;
 }
 .todo-status > div {
-    width: 24px;
-    height: 24px;
     border: 1px solid black;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
-    background-color: red;
-    cursor: pointer;
+    background-color: rgba(11, 255, 11, 0.39);
+}
+.todo-about{
+    display: flex;
+    flex-direction: row;
+    flex: 3 0 0;
+    align-items: center;
+}
+.todo-name {
+    flex: 2 0 0;
+    font-size: 25px;
+    font-family: "Roboto";
+}
+img[title='view']{
+    flex: 1 0 0;
+}
+.todo-about + div {
+    display: flex;
+    flex: 0.5 0 0;
+}
+.todo-info{
+    display: flex;
+    flex-direction: row;
+    flex: 1 0 0;
+    padding: 14px;
+}
+.todo-info-description{
+    flex: 5 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.description-label {
+    font-size: 14px;
+    font-family: "Roboto";
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 0, 0, 0.377);
+}
+.description-text{
+    font-family: "Roboto";
+    font-size: 16px;
+}
+.numerical-data {
+    display: flex;
+    flex-direction: column;
+    flex: 2 0 0;
+}
+.todo-info-duedate {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 0;
+}
+.duedate-label{
+    flex: 1 0 0;
+    font-size: 14px;
+    font-family: "Roboto";
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 0, 0, 0.377);
+}
+.duedate {
+    flex: 2 0 0;
+    font-size: 16px;
+    font-family: "Roboto";
+}
+.todo-info-priority{
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 0;
+}
+.priority-label {
+    flex: 1 0 0;
+    font-size: 14px;
+    font-family: "Roboto";
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 0, 0, 0.377);
+}
+.priority{
+    font-size: 16px;
+    font-family: "Roboto";
 }
 .todo-add-form{
     display: none;
-    position: absolute;
-    background-color: rgba(128, 128, 128, 0.616);
+    height: 100%;
 }
 .todo-form {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin: 10px;
 }
-.todo-form > p {
+.todo-form > p{
     display: flex;
     flex-direction: column;
+    flex: 1 0 0;
+    justify-content: start;
+    gap: 4px;
 }
-.todo-form label{
+.todo-form > p > label {
+    flex: 2 0 0;
     font-family: "Roboto";
+    font-size: 20px;
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 0, 0, 0.377);
 }
-.todo-form input {
-    outline: none;
-    height: 1.6em;
-    padding: 5px;
+.todo-form > p > input {
+    flex: 1 0 0;
     font-family: "Roboto";
+    padding: 10px;
     font-size: 18px;
 }
-img[alt="delete.svg"]{
-    cursor: pointer;
+.todo-form > p > input:focus {
+    outline: none;
 }
 textarea{
-    outline: none;
     resize: none;
-    padding: 5px;
-    font-size: 18px;
     font-family: "Roboto";
+    font-size: 18px;
+    padding: 10px;
 }
-#button {
+textarea:focus {
+    outline: none;
+}
+#button{
     display: flex;
     flex-direction: row;
-    width: 100%;
-    height: 34px;
-    gap: 7px;
 }
 #button > button {
     flex: 1 0 0;
-    border-width: 0;
-    background-color: rgba(0, 0, 0, 0.288);
-    font-size: 24px;
-    border-radius: 3px;
     font-family: "Roboto";
+    font-size: 23px;
+    background-color: rgba(0, 0, 0, 0.377);
+    border-width: 0;
+    border-radius: 4px;
     cursor: pointer;
+}
+.todo-info {
+    display: none;
+    flex-direction: row;
 }
