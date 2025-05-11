@@ -47,16 +47,34 @@
                 <p class="todos-project-name">TEST</p>
                 <button class="todo-add" title="Add todo">Add</button>
             </div>
-            <div class="todo">
-                <div class="todo-status" title="check if completed">
-                    <div data-color="red"></div>
+            <div class="todo" data-removed="false">
+                <div class="todo-start-show">
+                    <div class="todo-status" title="check if completed">
+                        <div data-color="red"></div>
+                    </div>
+                    <div class="todo-about">
+                        <p class="todo-name">TEST</p>
+                        <img src="./images/stat-minus-1.svg" alt="stat-minus-1.svg" title="view" width="34" height="34">
+                    </div>
+                    <div>
+                        <img src="./images/delete.svg" alt="delete.svg" title="remove todo" width="34" height="34">
+                    </div>
                 </div>
-                <div class="todo-about">
-                    <p class="todo-name">TEST</p>
-                    <img src="./images/stat-minus-1.svg" alt="stat-minus-1.svg" title="view" width="34" height="34">
-                </div>
-                <div>
-                    <img src="./images/delete.svg" alt="delete.svg" title="remove todo" width="34" height="34">
+                <div class="todo-info" data-hidden="true">
+                    <div class="todo-info-description">
+                        <p class="description-label">DESCRIPTION</p>
+                        <p class="description-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa laudantium obcaecati vero amet rerum praesentium iure assumenda commodi quaerat. Doloribus obcaecati accusamus a vitae dolorum, alias autem soluta consectetur quasi!</p>
+                    </div>
+                    <div class="numerical-data">
+                        <div class="todo-info-duedate">
+                            <p class="duedate-label">DUE-DATE</p>
+                            <p class="duedate">11/05/2025</p>
+                        </div>
+                        <div class="todo-info-priority">
+                            <p class="priority-label">PRIORITY</p>
+                            <p class="priority">1</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,15 +90,15 @@
                 </p>
                 <p>
                     <label for="duedate">DUE-DATE</label>
-                    <input name="duedate" type="text" id="todo-duedate">
+                    <input name="duedate" type="date" id="todo-duedate" value="2025-05-11">
                 </p>
                 <p>
                     <label for="priority">PRIORITY</label>
-                    <input name="priority" type="text" id="todo-priority">
+                    <input name="priority" type="number" id="todo-priority" min="1" value="0">
                 </p>
                 <p id="button">
-                    <button>ADD</button>
-                    <button>GO BACK</button>
+                    <button class="todo-form-add">ADD</button>
+                    <button class="todo-form-return">GO BACK</button>
                 </p>
             </form>
         </div>
