@@ -1,3 +1,6 @@
+import deleteImg from './images/delete.svg'
+import statminusImg from './images/stat-minus-1.svg'
+import { format } from 'date-fns'
 const newProject = document.querySelector('.new-project')
 const form = document.querySelector('.new-project-add')
 const project = document.querySelector('.project')
@@ -5,6 +8,13 @@ newProject.addEventListener('click', () => {
     form.style.display = 'flex'
     project.style.display = 'none'
     document.querySelector('.todos').style.display = 'none'
+    document.querySelector('.todo-add-form').style.display = 'none'
+})
+document.querySelector('.projects-text').addEventListener('click', () => {
+    document.querySelector('.new-project-add').style.display = 'none'
+    document.querySelector('.todos').style.display = 'none'
+    document.querySelector('.todo-add-form').style.display = 'none'
+    document.querySelector('.project').style.display = 'flex'
 })
 document.querySelector('.remove').addEventListener('click', () => {
     document.querySelector('.p-1').style.display = 'none'
@@ -46,11 +56,128 @@ view.addEventListener('click', () => {
     todos.style.display = 'flex'
 })
 const add = document.querySelector('.todo-add')
-const navigation = document.querySelector('.navigation')
-const projectSection = document.querySelector('.project-section')
 add.addEventListener('click', () => {
-    document.querySelector('.todo-add-form').style.display = 'block'
-    document.querySelector('.navigation').style.filter  = 'blur(5px)'
-    document.querySelector('.todo-header').style.filter = 'blur(5px)'
-    document.querySelector('.todo').style.filter = 'blur(5px)'
+    document.querySelector('.todos').style.display = 'none'
+    document.querySelector('.todo-add-form').style.display = 'flex'
+})
+const todoFormAdd = document.querySelector('.todo-form-add')
+todoFormAdd.addEventListener('click', (e) => {
+    e.preventDefault()
+    let todoTitle = document.querySelector('#todo-title').value
+    if(todoTitle != ''){
+        let outerDiv = document.createElement('div')
+        outerDiv.classList.add('todo')
+        let innerDiv = document.createElement('div')
+        innerDiv.classList.add('todo-start-show')
+        let div1 = document.createElement('div')
+        div1.classList.add('todo-status')
+        div1.setAttribute('title', 'check if completed')
+        let div2 = document.createElement('div')
+        div2.setAttribute('data-color', 'red')
+        div1.appendChild(div2)
+        innerDiv.appendChild(div1)
+        div1 = document.createElement('div')
+        div1.classList.add('todo-about')
+        let p = document.createElement('p')
+        p.classList.add('todo-name')
+        p.textContent = `${todoTitle}`
+        div1.appendChild(p)
+        let viewImg = document.createElement('img')
+        viewImg.src = statminusImg
+        viewImg.alt = 'stat-minus-1.svg'
+        viewImg.setAttribute('title', 'view')
+        viewImg.setAttribute('height', '34')
+        viewImg.setAttribute('width', '34')
+        viewImg.addEventListener('click', () => {
+            if(document.querySelector('.todo-info').getAttribute('data-hidden') == 'true'){
+                document.querySelector('.todo-info').style.display = 'flex'
+                document.querySelector('.todo-info').setAttribute('data-hidden', 'false')
+            }else {
+                document.querySelector('.todo-info').style.display = 'none'
+                document.querySelector('.todo-info').setAttribute('data-hidden', 'true')
+            }
+        })
+        div1.appendChild(viewImg)
+        innerDiv.appendChild(div1)  
+        div1 = document.createElement('div')
+        let removeImg = document.createElement('img')
+        removeImg.src = deleteImg
+        removeImg.alt = 'delete.svg'
+        removeImg.title = 'remove todo'
+        removeImg.setAttribute('width', '34')
+        removeImg.setAttribute('height', '34')
+        removeImg.addEventListener('click', () => {
+            document.querySelector('.todo').style.display = 'hidden'
+        })
+        div1.appendChild(removeImg)
+        innerDiv.appendChild(div1)
+        outerDiv.appendChild(innerDiv)
+        innerDiv = document.createElement('div')
+        innerDiv.classList.add('todo-info')
+        innerDiv.setAttribute('data-hidden', 'true')
+        div1 = document.createElement('div')
+        div1.classList.add('todo-info-description')
+        p = document.createElement('p')
+        p.classList.add('description-label')
+        p.textContent = 'DESCRIPTION'
+        div1.appendChild(p)
+        p = document.createElement('p')
+        p.classList.add('description-text')
+        if(document.querySelector('#todo-description').value == ""){
+            p.textContent = 'none'
+        }else {
+            p.textContent = `${document.querySelector('#todo-description').value}`
+        }
+        div1.appendChild(p)
+        div1 = document.createElement('div')
+        div1.classList.add('numerical-data')
+        div2 = document.createElement('div')
+        div2.classList.add('todo-info-duedate')
+        p = document.createElement('p')
+        p.classList.add('duedate-label')
+        p.textContent = 'DUE-DATE'
+        div2.appendChild(p)
+        p = document.createElement('p')
+        p.classList.add('duedate')
+        let dateList = document.querySelector('#todo-duedate').value.split('-')
+        p.textContent = `${format(new Date(dateList[2], dateList[1], dateList[0]), "dd/MM/yyyy")}`
+        div2.appendChild(p)
+        div1.appendChild(div2)
+        div2 = document.createElement('div')
+        div2.classList.add('todo-info-priority')
+        p = document.createElement('p')
+        p.classList.add('priority-label')
+        p.textContent = 'PRIORITY'
+        div2.appendChild(p)
+        p = document.createElement('p')
+        p.classList.add('priority')
+        p.textContent = document.querySelector('#todo-priority').value
+        div2.appendChild(p)
+        div1.appendChild(div2)
+        innerDiv.appendChild(div1)
+        outerDiv.appendChild(innerDiv)
+        document.querySelector('.todos').appendChild(outerDiv)
+        document.querySelector('.todos').style.display = 'flex'
+        document.querySelector('.todo-add-form').style.display = 'none'
+        document.querySelector('.todo-form').reset()
+    }
+})
+const todoFormReturn = document.querySelector('.todo-form-return')
+todoFormReturn.addEventListener('click', (e) => {
+    e.preventDefault()
+    document.querySelector('.todos').style.display = 'flex'
+    document.querySelector('.todo-add-form').style.display = 'none'
+})
+const remove = document.querySelector('img[alt="delete.svg"]')
+remove.addEventListener('click', () => {
+    remove.parentElement.parentElement.style.display = 'none'
+})
+document.querySelector('img[title="view"]').addEventListener('click', () => {
+    if(document.querySelector('.todo-info').getAttribute('data-hidden') == "true"){
+        document.querySelector('.todo-info').style.display = 'flex'
+        document.querySelector('.todo-info').setAttribute('data-hidden', 'false')
+    }else {
+        document.querySelector('.todo-info').style.display = 'none'
+        document.querySelector('.todo-info').setAttribute('data-hidden', 'true')
+    }
 })
