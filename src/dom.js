@@ -1,31 +1,17 @@
 import deleteImg from './images/delete.svg'
 import statminusImg from './images/stat-minus-1.svg'
 import { format } from 'date-fns'
-const newProject = document.querySelector('.new-project')
 const form = document.querySelector('.new-project-add')
 const project = document.querySelector('.project')
-newProject.addEventListener('click', () => {
-    form.style.display = 'flex'
-    project.style.display = 'none'
-    document.querySelector('.todos').style.display = 'none'
-    document.querySelector('.todo-add-form').style.display = 'none'
-})
-document.querySelector('.projects-text').addEventListener('click', () => {
-    document.querySelector('.new-project-add').style.display = 'none'
-    document.querySelector('.todos').style.display = 'none'
-    document.querySelector('.todo-add-form').style.display = 'none'
-    document.querySelector('.project').style.display = 'flex'
-})
-document.querySelector('.remove').addEventListener('click', () => {
-    document.querySelector('.p-1').style.display = 'none'
-})
 const create = document.querySelector('.create')
+let c = 2;
 create.addEventListener('click', (e) => {
     e.preventDefault()
     let value = document.querySelector('#title').value
     if(value != ''){
         let outerDiv = document.createElement('div')
         outerDiv.classList.add('p-1')
+        outerDiv.setAttribute('data-id', `p-${c}`)
         project.appendChild(outerDiv)
         let p = document.createElement('p')
         p.classList.add('project-title')
@@ -40,20 +26,32 @@ create.addEventListener('click', (e) => {
         button = document.createElement('button')
         button.classList.add('remove')
         button.textContent = 'REMOVE'
-        button.addEventListener('click', () => {
-            outerDiv.style.display = 'none'
-        })
         innerDiv.appendChild(button)
         form.style.display = 'none'
         project.style.display = 'flex'
         form.reset()
+        outerDiv = document.createElement('div')
+        outerDiv.classList.add('todos')
+        outerDiv.setAttribute('data-id', `p-${c}-todos`)
+        innerDiv = document.createElement('div')
+        innerDiv.classList.add('todo-header')
+        p = document.createElement('p')
+        p.classList.add('todos-project-name')
+        p.textContent = `${value}`
+        innerDiv.appendChild(p)
+        button = document.createElement('button')
+        button.classList.add('todo-add')
+        button.setAttribute('title', 'Add todo')
+        button.textContent = 'Add'
+        innerDiv.appendChild(button)
+        outerDiv.appendChild(innerDiv)
+        innerDiv = document.createElement('div')
+        innerDiv.classList.add('todo')
+        outerDiv.appendChild(innerDiv)
+        outerDiv.style.display = 'none'
+        document.querySelector('.project-section').appendChild(outerDiv)
+        c++;
     }
-})
-const view = document.querySelector('.view')
-const todos = document.querySelector('.todos')
-view.addEventListener('click', () => {
-    project.style.display = 'none'
-    todos.style.display = 'flex'
 })
 const add = document.querySelector('.todo-add')
 add.addEventListener('click', () => {
@@ -73,6 +71,7 @@ todoFormAdd.addEventListener('click', (e) => {
         div1.classList.add('todo-status')
         div1.setAttribute('title', 'check if completed')
         let div2 = document.createElement('div')
+        div2.classList.add('todo-color')
         div2.setAttribute('data-color', 'red')
         div1.appendChild(div2)
         innerDiv.appendChild(div1)
@@ -88,15 +87,6 @@ todoFormAdd.addEventListener('click', (e) => {
         viewImg.setAttribute('title', 'view')
         viewImg.setAttribute('height', '34')
         viewImg.setAttribute('width', '34')
-        viewImg.addEventListener('click', () => {
-            if(document.querySelector('.todo-info').getAttribute('data-hidden') == 'true'){
-                document.querySelector('.todo-info').style.display = 'flex'
-                document.querySelector('.todo-info').setAttribute('data-hidden', 'false')
-            }else {
-                document.querySelector('.todo-info').style.display = 'none'
-                document.querySelector('.todo-info').setAttribute('data-hidden', 'true')
-            }
-        })
         div1.appendChild(viewImg)
         innerDiv.appendChild(div1)  
         div1 = document.createElement('div')
@@ -106,9 +96,6 @@ todoFormAdd.addEventListener('click', (e) => {
         removeImg.title = 'remove todo'
         removeImg.setAttribute('width', '34')
         removeImg.setAttribute('height', '34')
-        removeImg.addEventListener('click', () => {
-            document.querySelector('.todo').style.display = 'hidden'
-        })
         div1.appendChild(removeImg)
         innerDiv.appendChild(div1)
         outerDiv.appendChild(innerDiv)
@@ -129,6 +116,7 @@ todoFormAdd.addEventListener('click', (e) => {
             p.textContent = `${document.querySelector('#todo-description').value}`
         }
         div1.appendChild(p)
+        innerDiv.appendChild(div1)
         div1 = document.createElement('div')
         div1.classList.add('numerical-data')
         div2 = document.createElement('div')
@@ -139,8 +127,7 @@ todoFormAdd.addEventListener('click', (e) => {
         div2.appendChild(p)
         p = document.createElement('p')
         p.classList.add('duedate')
-        let dateList = document.querySelector('#todo-duedate').value.split('-')
-        p.textContent = `${format(new Date(dateList[2], dateList[1], dateList[0]), "dd/MM/yyyy")}`
+        p.textContent = `${format(document.querySelector('#todo-duedate').value, "dd/MM/yyyy")}`
         div2.appendChild(p)
         div1.appendChild(div2)
         div2 = document.createElement('div')
@@ -168,16 +155,51 @@ todoFormReturn.addEventListener('click', (e) => {
     document.querySelector('.todos').style.display = 'flex'
     document.querySelector('.todo-add-form').style.display = 'none'
 })
-const remove = document.querySelector('img[alt="delete.svg"]')
-remove.addEventListener('click', () => {
-    remove.parentElement.parentElement.style.display = 'none'
-})
-document.querySelector('img[title="view"]').addEventListener('click', () => {
-    if(document.querySelector('.todo-info').getAttribute('data-hidden') == "true"){
-        document.querySelector('.todo-info').style.display = 'flex'
-        document.querySelector('.todo-info').setAttribute('data-hidden', 'false')
-    }else {
-        document.querySelector('.todo-info').style.display = 'none'
-        document.querySelector('.todo-info').setAttribute('data-hidden', 'true')
+document.addEventListener('click', e => {
+    if(e.target.matches('img[title="view"]')){
+        if(e.target.parentElement.parentElement.parentElement.querySelector('.todo-info').getAttribute('data-hidden') == 'true'){
+            e.target.parentElement.parentElement.parentElement.querySelector('.todo-info').style.display = 'flex'
+            e.target.parentElement.parentElement.parentElement.querySelector('.todo-info').setAttribute('data-hidden', 'false')
+        }else {
+            e.target.parentElement.parentElement.parentElement.querySelector('.todo-info').style.display = 'none'
+            e.target.parentElement.parentElement.parentElement.querySelector('.todo-info').setAttribute('data-hidden', 'true')
+        }
+    }
+    if(e.target.matches('img[alt="delete.svg"]')){
+        e.target.parentElement.parentElement.parentElement.style.display = 'none'
+    }
+    if(e.target.matches('.todo-color')){
+        if(e.target.getAttribute('data-color') == 'red'){
+            e.target.style.backgroundColor = 'rgba(4, 228, 4, 0.74)'
+            e.target.setAttribute('data-color', 'green')
+        }else {
+            e.target.style.backgroundColor = 'rgba(255, 0, 0, 0.76)'
+            e.target.setAttribute('data-color', 'red')
+        }
+    }
+    if(e.target.matches('.remove')){
+        e.target.parentElement.parentElement.style.display = 'none'
+    }
+    if(e.target.matches('.view')){
+        let dataId = e.target.parentElement.parentElement.getAttribute('data-id')
+        let cs = dataId + '-todos'
+        e.target.parentElement.parentElement.parentElement.parentElement.querySelector(`div[data-id="${cs}"]`).style.display = 'flex'
+        e.target.parentElement.parentElement.parentElement.style.display = 'none'
+    }
+    if(e.target.matches('#new-project')){
+        e.target.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('.new-project-add').style.display = 'flex'
+        e.target.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('.project').style.display = 'none'
+        e.target.parentElement.parentElement.parentElement.parentElement.parentElement.querySelectorAll('.todos').forEach(todo => {
+            todo.style.display = 'none'
+        });
+        e.target.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('.todo-add-form').style.display = 'none'
+    }
+    if(e.target.matches('.projects-text')){
+        e.target.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('.new-project-add').style.display = 'none'
+        e.target.parentElement.parentElement.parentElement.parentElement.parentElement.querySelectorAll('.todos').forEach(todo => {
+            todo.style.display = 'none'
+        })
+        e.target.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('.todo-add-form').style.display = 'none'
+        e.target.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('.project').style.display = 'flex'
     }
 })
