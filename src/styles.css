@@ -199,7 +199,7 @@ body {
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background-color: rgba(11, 255, 11, 0.39);
+    background-color: rgba(255, 0, 0, 0.76);
 }
 .todo-about{
     display: flex;
@@ -214,6 +214,13 @@ body {
 }
 img[title='view']{
     flex: 1 0 0;
+    cursor: pointer;
+}
+img[alt="delete.svg"]{
+    cursor: pointer;
+}
+.todo-color{
+    cursor: pointer;
 }
 .todo-about + div {
     display: flex;
@@ -336,4 +343,10 @@ textarea:focus {
 .todo-info {
     display: none;
     flex-direction: row;
+}
+div[data-color="red"]{
+    background-color: rgba(255, 0, 0, 0.76);
+}
+div[data-color="green"]{
+    background-color: rgba(4, 228, 4, 0.74);
 }
