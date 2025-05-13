@@ -19,7 +19,7 @@
             </div>
             <div class="new-project">
                 <img src="./images/calendar-import-outline.svg" alt="calendar-import-outline-svg" width="30" height="30">
-                <p class="sub-header-text">New project</p>
+                <p class="sub-header-text" id="new-project">New project</p>
             </div>
         </div>
     </nav>
@@ -34,7 +34,7 @@
             </div>
         </form>
         <div class="project">
-            <div class="p-1">
+            <div class="p-1" data-id="p-1" id="p-1">
                 <p class="project-title">test</p>
                 <div>
                     <button class="view">VIEW</button>
@@ -42,15 +42,15 @@
                 </div>
             </div>
         </div>
-        <div class="todos">
+        <div class="todos" data-id="p-1-todos">
             <div class="todo-header">
                 <p class="todos-project-name">TEST</p>
-                <button class="todo-add" title="Add todo">Add</button>
+                <button class="todo-add" title="Add todo" data-id="p-1">Add</button>
             </div>
-            <div class="todo" data-removed="false">
+            <div class="todo" id="p-1-todo">
                 <div class="todo-start-show">
                     <div class="todo-status" title="check if completed">
-                        <div data-color="red"></div>
+                        <div class="todo-color" data-color="red"></div>
                     </div>
                     <div class="todo-about">
                         <p class="todo-name">TEST</p>
